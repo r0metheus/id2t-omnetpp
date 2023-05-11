@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+../src/dns_amplification -n .:../src $*
+# for shared lib, use: opp_run -l ../src/dns_amplification -n .:../src $*

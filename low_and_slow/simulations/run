@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+../src/low_and_slow -n .:../src $*
+# for shared lib, use: opp_run -l ../src/low_and_slow -n .:../src $*
