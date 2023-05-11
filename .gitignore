@@ -125,4 +125,10 @@ local.properties
 .last-copts
 .qtenvrc
 
+**/src/dns_amplification
+**/src/low_and_slow
+**/src/udp_flood
+
+inet4.5/
+
 # End of https://www.toptal.com/developers/gitignore/api/cmake,eclipse,c++
