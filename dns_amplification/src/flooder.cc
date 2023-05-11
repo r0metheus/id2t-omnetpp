@@ -205,7 +205,7 @@ L3Address Flooder::chooseDestAddr()
 Packet *Flooder::createPacket()
 {
     char msgName[32];
-    sprintf(msgName, "UDPBasicAppData-%lu", (unsigned long)counter++);
+    sprintf(msgName, "FlooderData-%lu", (unsigned long)counter++);
     long msgByteLength = *messageLengthPar;
 
     Packet *pk = nullptr;
