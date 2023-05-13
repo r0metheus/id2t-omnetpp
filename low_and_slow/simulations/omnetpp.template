@@ -16,45 +16,52 @@ description = "INET TCP with TcpNoCongestionControl algorithm"
 
 [General]
 network = LowAndSlow
-sim-time-limit = 301s
-**.attackersCount = 5
-**.victimsCount = 3
-**.attacker[*].numApps = 3
+sim-time-limit = 300s
+
+**.attackersCount = 1
+**.victimsCount = 1
+**.attacker[*].numApps = 1
 **.victim[*].numApps = 1
+
 **.tcp.sackSupport = true
 **.tcp.windowScalingSupport = true
 **.tcp.windowScalingFactor = 7
 **.tcp.timestampSupport = true
+
 *.configurator.config = xmldoc("ip-config.xml")
+
 **.crcMode = "computed"
 **.fcsMode = "computed"
 **.pcapRecorder.pcapLinkType = 1
-**.channel.datarate = 10Mbps
+
+**.channel.datarate = 1Gbps
 **.channel.delay = 0.0s
 **.channel.ber = 0.0
 **.channel.per = 0.0
+
+# Attackers
 **.attacker[*].app[*].typename = "Slowloris"
+
 **.attacker[*].app[0].connectAddress = "victim[0]"
-**.attacker[*].app[0].connectPort = 443
-**.attacker[*].app[*].numRequestsPerSession = 972778
-**.attacker[*].app[*].thinkTime = 3s
-**.attacker[*].app[*].idleInterval = 1.0s
+**.attacker[*].app[0].connectPort = 80
+
+**.attacker[*].app[*].numRequestsPerSession = 50000
+**.attacker[*].app[*].thinkTime = 5s
+**.attacker[*].app[*].idleInterval = 5s
+#**.attacker[*].app[*].timeToLive = 
+#**.attacker[*].app[*].tos = 
+
+
+# Victims
 **.victim[*].app[0].typename = "TcpSinkApp"
+#**.victim[*].app[0].localPort = 80
+
 **.victim[*].eth[*].queue.typename = "EthernetQosQueue"
 **.victim[*].eth[*].queue.dataQueue.typename = "DropTailQueue"
-**.victim[*].eth[*].queue.dataQueue.packetCapacity = 100
-*.NIDS.numPcapRecorders = 1
-*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[1]"
-*.NIDS.pcapRecorder[*].pcapFile = "results/template.pcap"
-**.victim[*].tcp.buffer = 150
-**.victim[0].tcp.mss = 1412
-**.victim[0].app[0].localPort = 443
-**.attacker[*].app[1].connectAddress = "victim[1]"
-**.attacker[*].app[1].connectPort = 443
-**.victim[1].tcp.mss = 1440
-**.victim[1].app[0].localPort = 443
-**.attacker[*].app[2].connectAddress = "victim[2]"
-**.attacker[*].app[2].connectPort = 443
-**.victim[2].tcp.mss = 1396
-**.victim[2].app[0].localPort = 443
+**.victim[*].eth[*].queue.dataQueue.packetCapacity = 10
 
+
+# NIDS
+*.NIDS.numPcapRecorders = 1
+#*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[1]"
+*.NIDS.pcapRecorder[*].pcapFile = "results/template.pcap"

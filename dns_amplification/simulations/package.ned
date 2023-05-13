@@ -13,21 +13,31 @@ network dns_amplification
     parameters:
         double per = default(0);
         int attackersCount = default(1);
+        int victimsCount = default(1);
+        @display("bgb=1022.5375,438.72");
     types:
         channel C extends DatarateChannel
         {
             per = parent.per;
         }
     submodules:
-        attacker[attackersCount]: StandardHost;
-        
-        victim: StandardHost;
-        
-        router: Router;
-        
-        NIDS: EthernetSwitch;
+        attacker[attackersCount]: StandardHost {
+            @display("p=194.94,256.5");
+        }
+        victim[victimsCount]: StandardHost {
+            @display("p=900.315,256.5");
+        }
+        router: Router {
+            @display("p=389.88,256.5");
+        }
+        NIDS: EthernetSwitch {
 
-        configurator: Ipv4NetworkConfigurator;
+            @display("p=655.3575,255.2175");
+        }
+
+        configurator: Ipv4NetworkConfigurator {
+            @display("p=117.6775,43.415");
+        }
 
     connections:
         for i=0..attackersCount-1 {
@@ -36,5 +46,9 @@ network dns_amplification
 
         router.ethg++ <--> C <--> NIDS.ethg++;
 
-        NIDS.ethg++ <--> C <--> victim.ethg++;
+        for i=0..victimsCount-1 {
+            NIDS.ethg++ <--> C <--> victim[i].ethg++;
+        }
 }
+
+

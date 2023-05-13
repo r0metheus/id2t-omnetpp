@@ -1,0 +1,41 @@
+[General]
+network = udp_flood
+sim-time-limit = 25s
+
+**.attackersCount = 1
+**.victimsCount = 1
+**.attacker[*].numApps = 1
+**.victim[*].numApps = 1
+
+*.configurator.config = xmldoc("ip-config.xml")
+
+**.crcMode = "computed"
+**.fcsMode = "computed"
+**.pcapRecorder.pcapLinkType = 1
+
+**.channel.datarate = 1Gbps
+**.channel.delay = 0.0s
+**.channel.ber = 0.0
+**.channel.per = 0.0
+
+# Attackers
+**.attacker[*].app[*].typename = "Flooder"
+**.attacker[*].app[*].messageLength = 8B
+**.attacker[*].app[*].sendInterval = 0.01s
+**.attacker[*].app[*].destAddresses = moduleListByPath("**.victim[*]")
+**.attacker[*].app[*].burstDuration = 15s
+**.attacker[*].app[*].sleepDuration = 1s
+**.attacker[*].app[*].chooseDestAddrMode = "perBurst"
+
+# Victim
+**.victim[*].app[0].typename = "UdpSink"
+
+**.victim[*].eth[*].queue.typename = "EthernetQosQueue"
+**.victim[*].eth[*].queue.dataQueue.typename = "DropTailQueue"
+**.victim[*].eth[*].queue.dataQueue.packetCapacity = 10
+**.victim[*].udp.buffer = 10
+
+# NIDS
+*.NIDS.numPcapRecorders = 1
+#*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[1]"
+*.NIDS.pcapRecorder[*].pcapFile = "results/template.pcap"
