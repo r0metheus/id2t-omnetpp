@@ -25,7 +25,7 @@ sim-time-limit = 25s
 **.attacker[*].app[*].destAddresses = moduleListByPath("**.victim[*]")
 **.attacker[*].app[*].burstDuration = 15s
 **.attacker[*].app[*].sleepDuration = 1s
-**.attacker[*].app[*].chooseDestAddrMode = "perBurst"
+**.attacker[*].app[*].chooseDestAddrMode = "perSend"
 **.attacker[*].app[*].dnsResponse = true
 
 # Victim
@@ -38,5 +38,5 @@ sim-time-limit = 25s
 
 # NIDS
 *.NIDS.numPcapRecorders = 1
-#*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[1]"
+*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[0]"
 *.NIDS.pcapRecorder[*].pcapFile = "results/template.pcap"

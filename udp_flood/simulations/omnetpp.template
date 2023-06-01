@@ -37,5 +37,5 @@ sim-time-limit = 25s
 
 # NIDS
 *.NIDS.numPcapRecorders = 1
-#*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[1]"
+*.NIDS.pcapRecorder[*].moduleNamePatterns = "eth[0]"
 *.NIDS.pcapRecorder[*].pcapFile = "results/template.pcap"

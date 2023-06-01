@@ -51,4 +51,3 @@ network dns_amplification
         }
 }
 
-
