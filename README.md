@@ -23,7 +23,10 @@ To install the extension, there are two options:
 	    - As a low privilege user called `id2t`, from the working directory `/home/id2t/ID2T`.
 	    - With a volume that maps the host current directory `$(pwd)` to container's `/home/id2t/ID2T/pcaps` folder.
 
-Note: at this moment, only linux-amd64 is supported.
+Note: currently, compiled libraries are only available for linux-amd64.
 
 ## Usage
-## Results
+The extension is meant to be used within ID2T. Refer to the project [README](https://github.com/tklab-tud/ID2T/blob/feature/omnet-ddos/README.md) for usage.
+
+## Modeled attacks
+Currently, the following DoS attacks are supported: UDP Flood, DNS Amplification and Slowloris.
