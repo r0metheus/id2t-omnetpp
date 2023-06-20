@@ -1,4 +1,7 @@
-# INET DDoS models for ID2T
+# INET (Distributed) Denial of Service models for ID2T
+This repository contains the models and application code for generating realistic Denial of Service attacks in the context of [ID2T](https://github.com/tklab-tud/ID2T).
+
+This project is part of the thesis work conducted at DTU, for the achievement of the degree of MSc in Computer Science and Engineering.
 
 ## Installation
 
@@ -26,7 +29,7 @@ To install the extension, there are two options:
 Note: currently, compiled libraries are only available for linux-amd64.
 
 ## Usage
-The extension is meant to be used within ID2T. Refer to the project [README](https://github.com/tklab-tud/ID2T/blob/feature/omnet-ddos/README.md) for usage.
+The extension is meant to be used within ID2T. Refer to the project [README](https://github.com/tklab-tud/ID2T/blob/feature/omnet-ddos/README.md) for usage, specifically to the [feature/omnet-ddos](https://github.com/tklab-tud/ID2T/tree/feature/omnet-ddos) branch.
 
 ## Modeled attacks
 Currently, the following DoS attacks are supported: UDP Flood, DNS Amplification and Slowloris.
