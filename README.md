@@ -21,7 +21,7 @@ To install the extension, there are two options:
 3. Undocumented option:
     - Download the Docker image.
     - Use `docker load < id2t-omnetpp-docker.tar` to load the image.
-    - Use `docker run -ti --user id2t -w /home/id2t/ID2T -v $(pwd)/:/home/id2t/ID2T/pcaps id2t-omnetpp:1.1 /bin/zsh` to:
+    - Use `docker run -ti --user id2t -w /home/id2t/ID2T -v $(pwd)/:/home/id2t/ID2T/pcaps id2t-omnetpp:1.0.0 /bin/zsh` to:
 	    - Run and attach to `/bin/zsh` in a new container based on `id2t-omnetpp` image.
 	    - As a low privilege user called `id2t`, from the working directory `/home/id2t/ID2T`.
 	    - With a volume that maps the host current directory `$(pwd)` to container's `/home/id2t/ID2T/pcaps` folder.
